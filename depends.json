@@ -1,0 +1,65 @@
+{
+    "dependencies": [
+      {
+        "library": "gtk",
+        "version": "0.9",
+        "bindings": {
+          "glow": {
+            "init": "gtk::init()",
+            "window": "gtk::Window::new(gtk::WindowType::Toplevel)",
+            "show_all": "gtk::Window::show_all(&window)",
+            "main_quit": "gtk::main_quit()"
+          },
+          "rust": {
+            "init": "gtk::init().expect('Failed to initialize GTK');",
+            "window": "let window = gtk::Window::new(gtk::WindowType::Toplevel);",
+            "show_all": "window.show_all();",
+            "main_quit": "gtk::main_quit();"
+          }
+        }
+      },
+      {
+        "library": "serde",
+        "version": "1.0",
+        "bindings": {
+          "glow": {
+            "serialize": "serde::Serialize::serialize(&value, &mut serializer)",
+            "deserialize": "serde::Deserialize::deserialize(&deserializer)"
+          },
+          "rust": {
+            "serialize": "serde::to_string(&value).unwrap();",
+            "deserialize": "serde::from_str(&json).unwrap();"
+          }
+        }
+      },
+      {
+        "library": "std",
+        "version": "1.0",
+        "bindings": {
+          "glow": {
+            "print": "std::print!(\"{}\", message)",
+            "input": "let input = std::io::stdin().read_line().unwrap();"
+          },
+          "rust": {
+            "print": "println!(\"{}\", message);",
+            "input": "let input = std::io::stdin().lock().read_line().unwrap();"
+          }
+        }
+      },
+      {
+        "library": "regex",
+        "version": "1.5",
+        "bindings": {
+          "glow": {
+            "regex_match": "regex::Regex::new(pattern).unwrap().is_match(text)",
+            "find": "regex::Regex::new(pattern).unwrap().find(text)"
+          },
+          "rust": {
+            "regex_match": "let regex = regex::Regex::new(pattern).unwrap(); regex.is_match(text);",
+            "find": "let regex = regex::Regex::new(pattern).unwrap(); regex.find(text);"
+          }
+        }
+      }
+    ]
+  }
+  
